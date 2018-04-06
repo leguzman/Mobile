@@ -2,6 +2,9 @@
 .home, .background .pane, .background .item, .background .item-complex .item-content {
     background-color: color($colors,dark);
 }
+.user {
+    font-size: 60px; //Preferred size here
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
