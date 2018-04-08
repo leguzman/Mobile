@@ -25,6 +25,8 @@ import { EditorPage } from '../pages/editor/editor';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { AboutPage } from '../pages/about/about';
 import { RestProvider } from '../providers/rest/rest';
+import { IonPrismDirective } from 'ion-prism';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { RestProvider } from '../providers/rest/rest';
     OptionsPage,
     EditorPage,
     NotificationsPage,
-    AboutPage
+    AboutPage,
+    IonPrismDirective
   ],
   imports: [
     BrowserModule,

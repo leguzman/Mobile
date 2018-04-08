@@ -11,7 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-editor',
-  templateUrl: 'editor.html',
+  templateUrl: 'editor.html'
 })
 export class EditorPage {
 

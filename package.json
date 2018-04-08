@@ -32,6 +32,7 @@
     "apollo-client": "^2.2.8",
     "graphql": "^0.12.3",
     "graphql-tag": "^2.8.0",
+    "ion-prism": "^2.0.7",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "rxjs": "5.5.8",
@@ -42,5 +43,8 @@
     "@ionic/app-scripts": "3.1.8",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "config": {
+    "ionic_copy": "./config/copy.config.js"
+  }
 }
