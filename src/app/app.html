@@ -1,15 +1,20 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
+<<<<<<< HEAD
         <div class="center_text">
           <ion-icon name="contact" class= "user"></ion-icon>
           <ion-title>User</ion-title>
         </div>
+=======
+        <ion-icon name="contact" class= "user"></ion-icon>
+      <ion-title>Username</ion-title>
+>>>>>>> graphql
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
+    <ion-list no-lines>
         
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon"></ion-icon>
