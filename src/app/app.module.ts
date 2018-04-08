@@ -10,6 +10,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CodepadsPage } from '../pages/codepads/codepads';
 import { OptionsPage } from '../pages/options/options';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ApolloModule, Apollo } from 'apollo-angular';
+import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+
+
 
 @NgModule({
   declarations: [
@@ -22,6 +29,10 @@ import { OptionsPage } from '../pages/options/options';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpClientModule, // provides HttpClient for HttpLink
+    ApolloModule,
+    HttpLinkModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -32,9 +43,21 @@ import { OptionsPage } from '../pages/options/options';
     OptionsPage
   ],
   providers: [
-    StatusBar,
+    StatusBar,      
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    apollo: Apollo,
+    httpLink: HttpLink
+  ) {
+    apollo.create({
+      // By default, this client will send queries to the
+      // `/graphql` endpoint on the same host
+      link: httpLink.create({ uri: 'https://api.example.com/graphql' }),
+      cache: new InMemoryCache()
+    });
+  }
+}
