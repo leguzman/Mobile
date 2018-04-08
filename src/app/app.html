@@ -2,12 +2,12 @@
   <ion-header>
     <ion-toolbar>
         <ion-icon name="contact" class= "user"></ion-icon>
-      <ion-title>User</ion-title>
+      <ion-title>Username</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
+    <ion-list no-lines>
         
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon"></ion-icon>

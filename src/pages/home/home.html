@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="beer"></ion-icon>
+      <ion-icon name="menu"></ion-icon>
     </button>
     
     
@@ -12,11 +12,14 @@
 </ion-header>
 
 <ion-content padding class = "home">
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
+  <ion-list>
+    <ion-item *ngFor="let usuario of usuarios">
+      <ion-avatar item-start>
+        <img [src]="usuario.picture.medium">
+      </ion-avatar>
+      <h2>{{ usuario.name.first }}</h2>
+      <p>{{ usuario.email }}</p>
+    </ion-item>
+  </ion-list>
   <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
