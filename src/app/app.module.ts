@@ -38,10 +38,11 @@ import { RestProvider } from '../providers/rest/rest';
     OptionsPage
   ],
   providers: [
-    StatusBar,
+    StatusBar,      
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
