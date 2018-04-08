@@ -10,6 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CodepadsPage } from '../pages/codepads/codepads';
 import { OptionsPage } from '../pages/options/options';
+import { EditorPage } from '../pages/editor/editor';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import { AboutPage } from '../pages/about/about';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { OptionsPage } from '../pages/options/options';
     HomePage,
     ListPage,
     CodepadsPage,
-    OptionsPage
+    OptionsPage,
+    EditorPage,
+    NotificationsPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,10 @@ import { OptionsPage } from '../pages/options/options';
     HomePage,
     ListPage,
     CodepadsPage,
-    OptionsPage
+    OptionsPage,
+    EditorPage,
+    NotificationsPage,
+    AboutPage
   ],
   providers: [
     StatusBar,

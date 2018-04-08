@@ -1,8 +1,10 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-        <ion-icon name="contact" class= "user"></ion-icon>
-      <ion-title>User</ion-title>
+        <div class="center_text">
+          <ion-icon name="contact" class= "user"></ion-icon>
+          <ion-title>User</ion-title>
+        </div>
     </ion-toolbar>
   </ion-header>
 
@@ -11,12 +13,14 @@
         
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <ion-icon [name]="p.icon"></ion-icon>
-        {{p.title }}
+        {{ p.title }}
       </button>
-      <button menuClose ion-item *ngFor="let item of items" >
+      <div id="items_buttons">
+      <button menuClose ion-item *ngFor="let item of items">
           <ion-icon [name]="item.icon"></ion-icon>
-          {{item.title }}
+          {{ item.title }}
       </button>
+    </div>
     </ion-list>
   </ion-content>
 

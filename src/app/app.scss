@@ -5,6 +5,15 @@
 .user {
     font-size: 60px; //Preferred size here
 }
+
+div#items_buttons {
+    position: absolute;
+    bottom: 4px;
+}
+
+div.center_text {
+    text-align: center;
+}
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These

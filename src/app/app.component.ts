@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CodepadsPage } from '../pages/codepads/codepads';
 import { OptionsPage } from '../pages/options/options';
+import { EditorPage } from '../pages/editor/editor';
+import { NotificationsPage } from '../pages/notifications/notifications';
+import { AboutPage } from '../pages/about/about';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,17 +25,18 @@ export class MyApp {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
+    this.items = [
+      {title: 'Log Out', icon: 'md-exit'}
+    ];
     this.pages = [
-      { title: 'Home', component: HomePage ,icon: 'md-home'},
-      { title: 'List', component: ListPage ,icon: 'md-list'},
-      { title: 'Codepads', component: CodepadsPage,icon: 'md-code'},
-      { title: 'Options', component: OptionsPage,icon: 'md-settings'}
+      { title: 'Editor', component: EditorPage, icon: 'md-code'},
+      { title: 'Codepads', component: CodepadsPage,icon: 'ios-paper'},
+      { title: 'Notifications', component: NotificationsPage ,icon: 'md-notifications'},      
+      { title: 'Options', component: OptionsPage,icon: 'md-options'},
+      { title: 'About', component: AboutPage, icon: 'md-information-circle'}
     ];
 
-    this.items = [
-      {title: 'Log Out', icon: 'md-exit'},
-      {title: 'Exit', icon:'md-power'}
-    ];
+    
   }
 
   initializeApp() {
