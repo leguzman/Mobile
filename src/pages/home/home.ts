@@ -21,8 +21,8 @@ const allNotifications = gql`
 })
 export class HomePage implements OnInit, OnDestroy{
   loading: boolean;
-  //datos: string;
-  datos: ApolloQueryObservable<any>;
+  datos: string;
+  //datos: ApolloQueryObservable<any>;
   private querySubscription: Subscription;
 
   constructor(private apollo: Apollo,public navCtrl: NavController) {}
@@ -34,8 +34,8 @@ export class HomePage implements OnInit, OnDestroy{
       .valueChanges
       .subscribe(({ data, loading }) => {
         this.loading = loading;
-        //this.datos = JSON.stringify(data.data);
-          this.datos = this.apollo.watchQuery({ query: allNotifications });
+        this.datos = JSON.stringify(data);
+        //  this.datos = String(this.apollo.watchQuery({ query: allNotifications }));
       });
   }
   

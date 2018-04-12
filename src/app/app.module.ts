@@ -68,7 +68,7 @@ constructor(
     httpLink: HttpLink
   ) {
     apollo.create({
-      link: httpLink.create({ uri: 'http://192.168.99.102:5000/graphql' }),
+      link: httpLink.create({ uri: 'http://192.168.99.102:5000/graphql' }),//en windows el nodo es 99.102
       cache: new InMemoryCache()
     });
   }
