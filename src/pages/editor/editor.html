@@ -11,12 +11,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class = "home">
+<ion-content padding>
   <h3>Ionic Menu Starter</h3>
+  <div>
+  <textarea ion-prism="clike">
+    #include <iostream>
+    
+    using namespace std;
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    int main(){
+      for(int i = 0; i < 10; i++)
+        cout << "Hola Mundo\\n";
+      return 0;
+    }
+    
+  </textarea>
+</div>
 
   <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
