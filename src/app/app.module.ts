@@ -8,7 +8,7 @@ import { ListPage } from '../pages/list/list';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
+import { Subscription } from 'rxjs/Subscription';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,7 +40,9 @@ import { RestProvider } from '../providers/rest/rest';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule,
+    HttpClientModule, // provides HttpClient for HttpLink
+    ApolloModule,
+    HttpLinkModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,4 +63,13 @@ import { RestProvider } from '../providers/rest/rest';
   ]
 })
 export class AppModule {
+constructor(
+    apollo: Apollo,
+    httpLink: HttpLink
+  ) {
+    apollo.create({
+      link: httpLink.create({ uri: 'http://192.168.99.102:5000/graphql' }),
+      cache: new InMemoryCache()
+    });
+  }
 }
