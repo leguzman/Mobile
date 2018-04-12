@@ -42,25 +42,5 @@ export class HomePage implements OnInit, OnDestroy{
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
   }
-  /*usuarios : any [];
-  errorMessage: string;
-
-  constructor(public navCtrl: NavController, public rest: RestProvider) {
-
-  }
-
-  ionViewDidLoad() {
-    this.cargarUsuarios();
-  }
-
-  cargarUsuarios(){
-    this.rest.getUsers().subscribe(
-      (res) => { 
-        this.usuarios = res['results'];
-      },
-      (error) =>{
-        console.error(error);
-      }
-    )
-  }*/
+  
 }
