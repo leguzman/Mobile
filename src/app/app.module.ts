@@ -26,12 +26,24 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 import { AboutPage } from '../pages/about/about';
 import { RestProvider } from '../providers/rest/rest';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
 import * as hljs from 'highlight.js';
 import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
-import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+
 
 export function highlightJsFactory() {
   return hljs;
+}
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBX-fuDKcWDg9ifw_8kYUg_xFwjCL9JCgE",
+    authDomain: "beercompilertests.firebaseapp.com",
+    databaseURL: "https://beercompilertests.firebaseio.com",
+    projectId: "beercompilertests",
+    storageBucket: "beercompilertests.appspot.com",
+    messagingSenderId: "230901937105"
 }
 
 @NgModule({
@@ -54,7 +66,9 @@ export function highlightJsFactory() {
     HighlightJsModule.forRoot({
       provide: HIGHLIGHT_JS,
       useFactory: highlightJsFactory
-    })
+    }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,8 +85,7 @@ export function highlightJsFactory() {
     StatusBar,      
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider,
-    StorageServiceProvider
+    RestProvider
   ]
 })
 export class AppModule {
