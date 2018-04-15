@@ -25,8 +25,14 @@ import { EditorPage } from '../pages/editor/editor';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { AboutPage } from '../pages/about/about';
 import { RestProvider } from '../providers/rest/rest';
-import { IonPrismDirective } from 'ion-prism';
 
+import * as hljs from 'highlight.js';
+import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
+import { StorageServiceProvider } from '../providers/storage-service/storage-service';
+
+export function highlightJsFactory() {
+  return hljs;
+}
 
 @NgModule({
   declarations: [
@@ -37,15 +43,18 @@ import { IonPrismDirective } from 'ion-prism';
     OptionsPage,
     EditorPage,
     NotificationsPage,
-    AboutPage,
-    IonPrismDirective
+    AboutPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule, // provides HttpClient for HttpLink
     ApolloModule,
-    HttpLinkModule
+    HttpLinkModule,
+    HighlightJsModule.forRoot({
+      provide: HIGHLIGHT_JS,
+      useFactory: highlightJsFactory
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -62,7 +71,8 @@ import { IonPrismDirective } from 'ion-prism';
     StatusBar,      
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    RestProvider
+    RestProvider,
+    StorageServiceProvider
   ]
 })
 export class AppModule {
