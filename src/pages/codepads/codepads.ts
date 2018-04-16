@@ -75,8 +75,8 @@ export class CodepadsPage implements OnInit, OnDestroy {
   }
   
 
-  public onButtonClick(reference_id) {         
-    this.navCtrl.push(EditorPage, { reference_id: reference_id });
+  public onButtonClick(reference_id, codepad_id) {         
+    this.navCtrl.push(EditorPage, { reference_id: reference_id, codeid: codepad_id });
   }
 
   ngOnInit(){

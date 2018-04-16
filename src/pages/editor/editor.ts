@@ -36,7 +36,7 @@ export class EditorPage implements OnInit, OnDestroy {
 
     // Getting codepad id
     this.reference = this.navParams.get('reference_id');
-    console.log(this.reference);
+    this.codeid = this.navParams.get('codeid');
     //Asking to codepads microservice for the reference to firebase
 
     // Gets the reference on firebase
@@ -76,6 +76,28 @@ export class EditorPage implements OnInit, OnDestroy {
       // We connect our variable with the contents of the file
       this.currentCodepad = data
     });
+  }
+
+  deleteReference(ref){
+    if(ref){
+      const queryDefinition = gql`  
+      mutation { 
+        deletecodepad(id: "${ref}"){
+          codepad_id
+        }
+      }
+      `
+
+      this.querySubscription = this.apollo.mutate({
+        mutation: queryDefinition,
+      })
+      .subscribe(({ data, loading }) => {      
+        //  this.datos = String(this.apollo.watchQuery({ query: allNotifications }));
+        
+      });
+      alert("Deleted codepad: " + ref);
+    }
+
   }
 
   ngOnInit(){
