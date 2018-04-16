@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicPage, IonicPageModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -25,8 +25,26 @@ import { EditorPage } from '../pages/editor/editor';
 import { NotificationsPage } from '../pages/notifications/notifications';
 import { AboutPage } from '../pages/about/about';
 import { RestProvider } from '../providers/rest/rest';
-import { IonPrismDirective } from 'ion-prism';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireStorageModule } from 'angularfire2/storage';
+
+import * as hljs from 'highlight.js';
+import { HighlightJsModule, HIGHLIGHT_JS } from 'angular-highlight-js';
+
+
+export function highlightJsFactory() {
+  return hljs;
+}
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBX-fuDKcWDg9ifw_8kYUg_xFwjCL9JCgE",
+    authDomain: "beercompilertests.firebaseapp.com",
+    databaseURL: "https://beercompilertests.firebaseio.com",
+    projectId: "beercompilertests",
+    storageBucket: "beercompilertests.appspot.com",
+    messagingSenderId: "230901937105"
+}
 
 @NgModule({
   declarations: [
@@ -37,15 +55,21 @@ import { IonPrismDirective } from 'ion-prism';
     OptionsPage,
     EditorPage,
     NotificationsPage,
-    AboutPage,
-    IonPrismDirective
+    AboutPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule, // provides HttpClient for HttpLink
     ApolloModule,
-    HttpLinkModule
+    HttpLinkModule,
+    HighlightJsModule.forRoot({
+      provide: HIGHLIGHT_JS,
+      useFactory: highlightJsFactory
+    }),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireStorageModule,
+    IonicPageModule.forChild(EditorPage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -71,7 +95,7 @@ constructor(
     httpLink: HttpLink
   ) {
     apollo.create({
-      link: httpLink.create({ uri: 'http://192.168.99.102:5000/graphql' }),//en windows el nodo es 99.102
+      link: httpLink.create({ uri: 'http://192.168.99.101:5000/graphql' }),//en windows el nodo es 99.102
       cache: new InMemoryCache()
     });
   }

@@ -14,19 +14,16 @@
 <ion-content padding>
   <h3>Ionic Menu Starter</h3>
   <div>
-  <textarea ion-prism="clike">
-    #include <iostream>
-    
-    using namespace std;
-
-    int main(){
-      for(int i = 0; i < 10; i++)
-        cout << "Hola Mundo\\n";
-      return 0;
-    }
-    
-  </textarea>
+    <pre><code mwlHighlightJs [source]="currentCodepad" language="cpp"></code></pre>
 </div>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-fab right bottom>
+    <button ion-fab color="dark"><ion-icon name="apps"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button ion-fab color="danger" (click)="deleteReference(codeid)"><ion-icon name="trash"></ion-icon></button>
+      <button ion-fab><ion-icon name="md-create"></ion-icon></button>
+      <button ion-fab color="light"><ion-icon name="md-cloud-download"></ion-icon></button>
+      <button ion-fab color="primary"><ion-icon name="play"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
