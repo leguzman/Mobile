@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-list no-lines>
     <ion-list no-lines>
-      <button ion-item *ngFor="let file of files" (click)="onButtonClick()">
+      <button ion-item *ngFor="let file of files" (click)="onButtonClick(file.reference_id)">
         <ion-icon [name]="file.icon" item-start></ion-icon>
         {{file.title}}
       </button>

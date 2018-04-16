@@ -33,7 +33,7 @@ export class CodepadsPage implements OnInit, OnDestroy {
   selectedItem: any;
   docs: Array<{title: string, body: string, icon: string}>;
   items: Array<{title: string, content: Object[], icon: string}>;
-  files: Array<{title: string, icon: string}> = [];
+  files: Array<{title: string, icon: string, id: string, reference_id: string}> = [];
   private querySubscription: Subscription;
 
   loading: boolean  = false;
@@ -75,8 +75,8 @@ export class CodepadsPage implements OnInit, OnDestroy {
   }
   
 
-  public onButtonClick() {         
-    this.navCtrl.push(EditorPage);
+  public onButtonClick(reference_id) {         
+    this.navCtrl.push(EditorPage, { reference_id: reference_id });
   }
 
   ngOnInit(){
@@ -89,7 +89,9 @@ export class CodepadsPage implements OnInit, OnDestroy {
       for(let codepad of data['allcodepads']){
         this.files.push({
           title: codepad['path'],
-          icon: "md-document"
+          icon: "md-document",
+          id: codepad['codepad_id'],
+          reference_id: codepad['resource_id']
         })
       }
       //  this.datos = String(this.apollo.watchQuery({ query: allNotifications }));
