@@ -1,5 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/map';
+import { EditorPage } from '../editor/editor';
+
+const allNotifications = gql`
+  query{
+    allcodepads{
+      codepad_id,
+      resource_id,
+      path
+  }
+}
+`;
 
 /**
  * Generated class for the CodepadsPage page.
@@ -13,12 +28,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-codepads',
   templateUrl: 'codepads.html',
 })
-export class CodepadsPage {
+export class CodepadsPage implements OnInit, OnDestroy {
   public buttonClicked: boolean = false; //Whatever you want to initialise it as
   selectedItem: any;
   docs: Array<{title: string, body: string, icon: string}>;
   items: Array<{title: string, content: Object[], icon: string}>;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  files: Array<{title: string, icon: string}> = [];
+  private querySubscription: Subscription;
+
+  loading: boolean  = false;
+  datos: Object;
+  cool: string;
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private apollo: Apollo) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -52,9 +75,29 @@ export class CodepadsPage {
   }
   
 
-    public onButtonClick(item) {     
-        
-        this.selectedItem= item.content;
-        this.buttonClicked = !this.buttonClicked;
-    }
+  public onButtonClick() {         
+    this.navCtrl.push(EditorPage);
+  }
+
+  ngOnInit(){
+    this.querySubscription = this.apollo.watchQuery<any>({
+      query: allNotifications
+    })
+    .valueChanges
+    .subscribe(({ data, loading }) => {
+      this.loading = loading;
+      for(let codepad of data['allcodepads']){
+        this.files.push({
+          title: codepad['path'],
+          icon: "md-document"
+        })
+      }
+      //  this.datos = String(this.apollo.watchQuery({ query: allNotifications }));
+    });
+  }
+
+  ngOnDestroy(){
+    this.querySubscription.unsubscribe();
+  }
+
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, IonicPage, IonicPageModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -68,7 +68,8 @@ var firebaseConfig = {
       useFactory: highlightJsFactory
     }),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    IonicPageModule.forChild(EditorPage)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -94,7 +95,7 @@ constructor(
     httpLink: HttpLink
   ) {
     apollo.create({
-      link: httpLink.create({ uri: 'http://192.168.99.102:5000/graphql' }),//en windows el nodo es 99.102
+      link: httpLink.create({ uri: 'http://192.168.99.101:5000/graphql' }),//en windows el nodo es 99.102
       cache: new InMemoryCache()
     });
   }

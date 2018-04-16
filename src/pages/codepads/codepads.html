@@ -15,16 +15,13 @@
 
 <ion-content padding>
   <ion-list no-lines>
-    <button ion-item *ngFor="let item of items" (click)="onButtonClick(item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}      
-    </button>
-    <ion-list no-lines *ngIf = "buttonClicked">
-        <button ion-item  *ngFor="let doc of selectedItem" >
-         <ion-icon [name]="doc.icon" item-start></ion-icon>
-         {{doc.title}}
-      
-         </button>
-      </ion-list>
+    <ion-list no-lines>
+      <button ion-item *ngFor="let file of files" (click)="onButtonClick()">
+        <ion-icon [name]="file.icon" item-start></ion-icon>
+        {{file.title}}
+      </button>
+
+    </ion-list> 
+
   </ion-list>
 </ion-content>

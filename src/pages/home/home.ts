@@ -9,9 +9,9 @@ import 'rxjs/add/operator/map';
 // We use the gql tag to parse our query string into a query document
 const allNotifications = gql`
   query{
-  allNotifications{
-    title
-    body
+    allcodepads{
+      codepad_id
+      resource_id
   }
 }
 `;
